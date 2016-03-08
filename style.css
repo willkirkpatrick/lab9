@@ -1,0 +1,61 @@
+
+.button {
+        height:40px;
+        width:60px;
+        border:2px solid black;
+        margin-left:10px;
+}
+
+#car {
+      background-color:red;  
+}
+
+#cop {
+      background-color:blue;
+}
+
+#motorcycle {
+            background-color:yellow;
+}
+
+#tank {
+        background-color:green;
+}
+
+/*.container {
+            height:900px;
+            width:100%;
+            border:2px solid black;
+}*/
+
+.car {
+        position:absolute;
+        width:100px;
+        height:100px;
+        margin:10px;
+        border:2px solid red;
+}
+
+.copcar {
+        position:absolute;
+        width:100px;
+        height:100px;
+        margin:10px;
+        border:2px solid;
+}
+
+.tank {
+        position:absolute;
+        width:100px;
+        height:100px;
+        margin:10px;
+        border:2px solid;
+}
+
+.motorcycle {
+        position:absolute;
+        width:100px;
+        height:100px;
+        margin:10px;
+        border:2px solid;
+}
