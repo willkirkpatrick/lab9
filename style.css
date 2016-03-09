@@ -23,6 +23,7 @@
 }
 
 /*.container {
+            position:relative;
             height:900px;
             width:100%;
             border:2px solid black;

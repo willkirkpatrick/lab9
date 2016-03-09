@@ -37,31 +37,81 @@ var Vehicle = function(name) {
     
 }
 
-Vehicle.prototype.insert = function(type, color) {
+Vehicle.prototype.insert = function(type, color, maxPoints) {
     console.log("step 3");
     this.div = document.createElement("div");
     this.div.className = type;
+    this.div.id = "animate";
     this.div.style.borderColor = color;
     this.x = Math.floor(Math.random() * 700);
     this.y = Math.floor(Math.random() * 700);
     this.div.style.top = this.y + "px";
     this.div.style.left = this.x + "px";
+    this.points = 0;
+    this.maxPoints = maxPoints;
     document.getElementById('vehicle-container').appendChild(this.div);
+    this.move(type);
+    this.damage();
+    
 }
 
-Vehicle.prototype.move = function(locate) {
-    
+Vehicle.prototype.move = function(type) {
+    console.log("step 4");
+     switch (type) {
+        case "car":
+                        var samediv = this.div;
+                        (function loop() {
+                            $(samediv).animate({left: "700px"}, 4000);
+                            $(samediv).animate({left: "0px"}, 4000, loop);
+                        })();
+
+                    
+        break;
+        case "copcar":
+                       var samediv = this.div;
+                        (function loop() {
+                            $(samediv).animate({top: "700px"}, 4000);
+                            $(samediv).animate({top: "0px"}, 4000, loop);
+                        })();
+                        
+        
+        break;
+        case "tank":
+                        var samediv = this.div;
+                        (function loop() {
+                            $(samediv).animate({left: "700px", top: "700px"}, 8000);
+                            $(samediv).animate({left: "0px", top: "0px"}, 8000, loop);
+                        })();
+                        
+        break;
+        case "motorcycle":
+                            var samediv = this.div;
+                        (function loop() {
+                            $(samediv).animate({left: "700px", top: "0px"}, 2000);
+                            $(samediv).animate({left: "0px", top: "700px"}, 2000, loop);
+                        })();
+        
+        break;    
+    }
     
 }
 
 Vehicle.prototype.damage = function() {
-    
-}
-
-Vehicle.prototype.remove = function() {
-    if (points == pointNum) {
-        document.removeChild();
+    var points = this.points;
+    var maxPoints = this.maxPoints;
+    console.log(maxPoints);
+    var damageDiv = this.div;
+    var damagePoints = function() {
+        points = points + 1;
+        if (points >= maxPoints) {
+            document.getElementById("vehicle-container").removeChild(damageDiv);
+        }
+        damageDiv.innerHTML = points;
     }
+    damageDiv.addEventListener("click", damagePoints);
+    
+   
+    
 }
 
 var Car = function() {
@@ -73,7 +123,7 @@ Car.prototype.constructor = Car;
 
 var addCar = function() {
     var newCar = new Car();
-    newCar.insert("car", "red");
+    newCar.insert("car", "red", 2);
     
 }
 
@@ -86,7 +136,7 @@ Copcar.prototype.constructor = Copcar;
 
 var addCopcar = function() {
     var newCopcar = new Copcar();
-    newCopcar.insert("copcar", "blue");
+    newCopcar.insert("copcar", "blue", 3);
     
 }
 
@@ -99,7 +149,7 @@ Tank.prototype.constructor = Tank;
 
 var addTank = function() {
     var newTank = new Tank();
-    newTank.insert("tank", "green");
+    newTank.insert("tank", "green", 10);
     
 }
 
@@ -112,7 +162,7 @@ Motorcycle.prototype.constructor = Motorcycle;
 
 var addBike = function() {
     var newBike = new Motorcycle();
-    newBike.insert("motorcycle", "yellow");
+    newBike.insert("motorcycle", "yellow", 1);
     
 }
 
